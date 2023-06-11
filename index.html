@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Storyteller</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="./dist/Commands/Command.js"></script>
+    <script src="./dist/Commands/Packages/CommandsPackage.js"></script>
+    <script src="./dist/Commands/Packages/AllCommandsPackage.js"></script>
+    <script src="./dist/Commands/CmdAddItem.js"></script>
+    <script src="./dist/Commands/CmdClear.js"></script>
+    <script src="./dist/Commands/CmdHelp.js"></script>
+    <script src="./dist/Commands/CmdPickItem.js"></script>
+    <script src="./dist/Commands/CmdRmItem.js"></script>
+    <script src="./dist/Commands/CmdShowInventory.js"></script>
+    <script src="./dist/Commands/CmdUnknown.js"></script>
+    <script src="./dist/Commands/CmdWhere.js"></script>
+    
+
+    <script src="./dist/CommandResolver.js"></script>
+    <script src="./dist/DIContainer.js"></script>
+    <script src="./dist/index.js"></script>
+    <script src="./dist/Input.js"></script>
+    <script src="./dist/Output.js"></script>
+    <script src="./dist/Player.js"></script>
+    <script src="./dist/Room.js"></script>
+    <script src="./dist/Utility.js"></script>
+    <script src="./dist/World.js"></script>
+
+    <script src="./dist/Items/IItem.js"></script>
+    <script src="./dist/Items/Item.js"></script>
+    <script src="./dist/Items/ItemContainer.js"></script>
+    <script src="./dist/Items/NullItem.js"></script>
+</head>
+<body onload="OnLoad();">
+    <div id="output-container">
+        <p id="output">
+
+        </p>
+        
+    </div>
+    <input type="text" name="player-input" id="player-input" placeholder="Zadej příkaz">
+</body>
+</html>

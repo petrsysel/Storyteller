@@ -1,0 +1,31 @@
+:root{
+    --yellow-text: rgb(164, 164, 5);
+    --backgroundColo: rgb(16, 20, 4);
+    --font: monospace;
+}
+*{
+    font-family: var(--font);
+}
+body{
+    background-color: var(--backgroundColo);
+    color: var(--yellow-text);
+    font-size: 1.5em;
+}
+
+#player-input{
+    border: 2px solid var(--yellow-text);
+    background-color: var(--backgroundColo);
+    font-family: var(--font);
+    color: var(--yellow-text);
+    width: 100%;
+    outline: 2px solid var(--yellow-text);
+    font-size: 1em;
+}
+
+#output{
+    border: 1px solid var(--yellow-text);
+    height: 300px;
+    white-space: pre-line;
+    overflow-y: scroll;
+    padding-left: 1em;
+}
