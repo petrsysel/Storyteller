@@ -99,8 +99,12 @@ class TlacitkoBuilder{
 }
 
 let tlacitkoBuilder = new TlacitkoBuilder()
-let tlacitko = tlacitkoBuilder.SetText("Submit")
+let tlacitko = tlacitkoBuilder.SetText("Save")
                               .SetSirka(40)
                               .SetVyska(20)
                               .SetRamecek(1)
                               .SetBarva(new Barva)
+                              .SetIkona(new Ikona)
+                              .SetVybrano(false)
+                              .SetZkratka(["ctrl", "s"])
+                              .Build()
