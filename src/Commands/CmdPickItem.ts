@@ -23,7 +23,7 @@ class CmdPickItem extends Command{
         let room = this.World.Player.Room;
 
         let founded = room.Items.GetByName(name);
-        if(founded == null){    // dělá mi v tom bordel NullItem
+        if(NullableObject.isNull(founded)){    // dělá mi v tom bordel NullItem
             this.Output.Print(`Předmět ${name} se zde nenachází`);
             return;
         }

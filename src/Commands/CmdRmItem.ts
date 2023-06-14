@@ -14,16 +14,19 @@ class CmdRmItem extends Command{
     }
 
     Execute(args: string[]){
+        console.log("cojeeeeee")
         let name = args[0];
         let amount = Number.parseInt(args[1]);
         if(!amount) amount = 1;
 
         let room = this.World.Player.Room;
         let founded = room.Items.GetByName(name);
-        if(!founded){
+        console.log(founded)
+        if(NullableObject.isNull(founded)){
             this.Output.Print(`Předmět "${name}" nebyl v tomto místě nalezen`);
             return;
         }
+        console.log(amount)
         let removed = room.RemoveItem(founded, amount) as Item;
         let amountString = removed.GetAmount() > 1 ? ` v množství ${removed.GetAmount()} ks` : "";
         this.Output.Print(`Předmět ${founded.GetName()} byl odebrán${amountString}`);
