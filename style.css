@@ -24,7 +24,7 @@ body{
 
 #output{
     border: 1px solid var(--yellow-text);
-    height: 300px;
+    height: 600px;
     white-space: pre-line;
     overflow-y: scroll;
     padding-left: 1em;

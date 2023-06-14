@@ -7,7 +7,6 @@ class ItemContainer{
 
     Add(item: Item){
         let existing = this.GetByName(item.GetName());
-        console.log(existing);
         if(!(existing instanceof NullItem)){
             existing.Amount += item.GetAmount();
         }

@@ -6,7 +6,7 @@ class CmdClear extends Command{
     Help(){
         return "Vymaže vše v konzoli.";
     }
-    Execute(args: string[]){
+    Execute(args: Arguments){
         this.Output.Clear();
     }
 }

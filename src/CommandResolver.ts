@@ -13,7 +13,7 @@ class CommandResolver{
         let phrases = Utility.SplitCommand(text);
         
         let keyword = phrases.splice(0,1)[0];
-        let args = phrases;
+        let args = new Arguments(phrases);
 
         let command = this.commandsPackage.GetCommand(keyword);
         command.Execute(args);

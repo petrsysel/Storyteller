@@ -1,5 +1,5 @@
 class CmdUnknown extends Command{
-    Execute(args: string[]){
+    Execute(args: Arguments){
         this.Output.Print("Neznámý příkaz");
     }
 }

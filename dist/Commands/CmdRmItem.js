@@ -13,13 +13,11 @@ class CmdRmItem extends Command {
         Příklad: rmitem mince 12`;
     }
     Execute(args) {
-        let name = args[0];
-        let amount = Number.parseInt(args[1]);
-        if (!amount)
-            amount = 1;
+        let name = args.GetValue(0, "");
+        let amount = args.GetValue(0, 1);
         let room = this.World.Player.Room;
         let founded = room.Items.GetByName(name);
-        if (!founded) {
+        if (NullableObject.isNull(founded)) {
             this.Output.Print(`Předmět "${name}" nebyl v tomto místě nalezen`);
             return;
         }
