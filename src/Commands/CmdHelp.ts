@@ -17,7 +17,7 @@ class CmdHelp extends Command{
         this.AddKeyword("pomoc");
     }
 
-    Execute(){
+    Execute(args: Arguments){
         this.CmdPackage.Commands.forEach(command => {
             this.Output.Print(command.Keywords[0]);
             this.Output.Print(command.Help());

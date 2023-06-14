@@ -12,17 +12,15 @@ class CmdPickItem extends Command {
         Příklad: pick baterie 5`;
     }
     Execute(args) {
-        let name = args[0];
-        if (name == null) {
+        if (!args.IsSpecified(0)) {
             this.Output.Print("Musíš zadat název předmětu");
             return;
         }
-        let amount = Number.parseInt(args[1]);
-        if (amount == null)
-            amount = 1;
+        let name = args.GetValue(0, "název");
+        let amount = args.GetValue(1, 1);
         let room = this.World.Player.Room;
         let founded = room.Items.GetByName(name);
-        if (founded == null) { // dělá mi v tom bordel NullItem
+        if (NullableObject.isNull(founded)) { // dělá mi v tom bordel NullItem
             this.Output.Print(`Předmět ${name} se zde nenachází`);
             return;
         }

@@ -13,7 +13,7 @@ class Command{
 
     }
 
-    Execute(args: string[]){
+    Execute(args: Arguments){
         throw new Error("Execution of command is not defined");
     }
     

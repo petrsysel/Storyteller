@@ -11,14 +11,14 @@ class CmdPickItem extends Command{
         Příklad: pick baterie 5`;
     }
 
-    Execute(args: string[]){
-        let name = args[0];
-        if(name == null){
+    Execute(args: Arguments){
+        
+        if(!args.IsSpecified(0)){
             this.Output.Print("Musíš zadat název předmětu");
             return;
         }
-        let amount: number = Number.parseInt(args[1]);
-        if(amount == null) amount = 1;
+        let name = args.GetValue<string>(0, "název");
+        let amount: number = args.GetValue<number>(1, 1);
 
         let room = this.World.Player.Room;
 

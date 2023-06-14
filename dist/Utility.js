@@ -16,4 +16,11 @@ class Utility {
         }
         return results;
     }
+    static CheckParameter(parameter, defalutValue) {
+        if (parameter !== null && parameter !== undefined && !Number.isNaN(parameter)) {
+            return parameter;
+        }
+        else
+            return defalutValue;
+    }
 }

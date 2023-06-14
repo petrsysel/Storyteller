@@ -1,0 +1,3 @@
+interface INullableObject{
+    isNull:boolean
+}
