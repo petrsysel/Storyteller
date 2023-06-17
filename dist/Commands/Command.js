@@ -37,6 +37,9 @@ class Command {
     AddArgument(argument) {
         this.Arguments.AddArgument(argument);
     }
+    GetName() {
+        return this.Keywords[0];
+    }
     AddRequiredArgument(type, name, label, description, requirementError) {
         this.AddArgument(new ArgumentBuilder()
             .SetName(name)
