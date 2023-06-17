@@ -7,5 +7,6 @@ class AllCommandsPackage extends CommandsPackage{
         this.AddCommand(new CmdShowInventory(this.World, this.Output));
         this.AddCommand(new CmdPickItem(this.World, this.Output));
         this.AddCommand(new CmdClear(this.World, this.Output));
+        this.AddCommand(new CmdDrop(this.World, this.Output))
     }
 }
