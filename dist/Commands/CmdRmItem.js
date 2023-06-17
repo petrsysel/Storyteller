@@ -5,6 +5,8 @@ class CmdRmItem extends Command {
         this.AddKeyword("rmitem");
         this.AddKeyword("odeberpredmet");
         this.AddKeyword("odebervec");
+        this.AddRequiredArgument(ArgumentType.string, "name", "název", "Název předmětu který chceš odstranit", "Musíš zadat název předmětu který chceš odstranit");
+        this.AddUnrequiredArgument(ArgumentType.number, "amount", "množství", "Množství ve kterém chceš předmět odebrat", 1);
     }
     Help() {
         return `Odebere předmět z aktuální lokace.
@@ -12,9 +14,9 @@ class CmdRmItem extends Command {
         Lze specifikovat množství.
         Příklad: rmitem mince 12`;
     }
-    Execute(args) {
-        let name = args.GetValue(0, "");
-        let amount = args.GetValue(0, 1);
+    Execution(args) {
+        let name = args.GetArg('name');
+        let amount = args.GetArg('amount');
         let room = this.World.Player.Room;
         let founded = room.Items.GetByName(name);
         if (NullableObject.isNull(founded)) {

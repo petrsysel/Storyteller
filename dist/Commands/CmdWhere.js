@@ -4,7 +4,7 @@ class CmdWhere extends Command {
         this.Keywords.push("where");
         this.Keywords.push("kde");
     }
-    Execute(args) {
+    Execution(args) {
         let room = this.World.Player.Room;
         let roomName = room.GetName();
         this.Output.Print(`=============== ${roomName} ===============`);

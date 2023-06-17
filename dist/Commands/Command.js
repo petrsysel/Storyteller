@@ -4,11 +4,25 @@ class Command {
         this.World = world;
         this.Output = output;
         this.Keywords = [];
+        this.Arguments = new CommandArgs();
         this.InitCommand();
     }
     InitCommand() {
     }
-    Execute(args) {
+    Execute(rawArgs) {
+        try {
+            let args = Arguments.Resolve(rawArgs, this.Arguments);
+            this.Execution(args);
+        }
+        catch (e) {
+            if (e instanceof Error) {
+                let message = e.message;
+                console.log(message);
+                this.Output.Print(`Chyba příkazu: ${message}`);
+            }
+        }
+    }
+    Execution(args) {
         throw new Error("Execution of command is not defined");
     }
     HaveKeyword(keyword) {
@@ -19,5 +33,28 @@ class Command {
     }
     AddKeyword(keyword) {
         this.Keywords.push(keyword);
+    }
+    AddArgument(argument) {
+        this.Arguments.AddArgument(argument);
+    }
+    AddRequiredArgument(type, name, label, description, requirementError) {
+        this.AddArgument(new ArgumentBuilder()
+            .SetName(name)
+            .SetLabel(label)
+            .SetDescription(description)
+            .SetRequired(true)
+            .SetRequirementDescription(requirementError)
+            .SetType(type)
+            .Build());
+    }
+    AddUnrequiredArgument(type, name, label, description, defaultValue) {
+        this.AddArgument(new ArgumentBuilder()
+            .SetName(name)
+            .SetLabel(label)
+            .SetDescription(description)
+            .SetRequired(false)
+            .SetDefaultValue(defaultValue)
+            .SetType(type)
+            .Build());
     }
 }

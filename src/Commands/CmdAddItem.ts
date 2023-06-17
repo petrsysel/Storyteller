@@ -2,17 +2,18 @@ class CmdAddItem extends Command{
     InitCommand(){
         this.Keywords.push('additem');
         this.Keywords.push('pridejpredmet');
+        
+        this.AddRequiredArgument(ArgumentType.string, "name", "název", "Název přidávaného předmětu", "Musíš zadat název předmětu, který chceš přidat")
+        this.AddRequiredArgument(ArgumentType.string, "description", "popis", "Popis přidávaného předmětu", "Musíš zadat popis předmětu, který chceš přidat")
+
+        this.AddUnrequiredArgument(ArgumentType.number, "amount", "množství", "Množství v jakém bude předmět přidán", 1)
     }
 
-    Execute(args: Arguments){
-        
-        if(!args.IsSpecified(0)){
-            this.Output.Print("Zadej název předmětu");
-            return
-        }
-        let name = args.GetValue<string>(0, "");
-        let description = args.GetValue<string>(1, "Chybí popis");
-        let amount = args.GetValue<number>(2, 1);
+    Execution(args: Arguments){
+        let name = args.GetArg('name') as string
+        let description = args.GetArg('description') as string
+        let amount = args.GetArg('amount') as number
+        console.log(args.GetArg('amount'))
 
         let newItem = new Item(name, description, amount);
         this.World.Player.Room.AddItem(newItem);

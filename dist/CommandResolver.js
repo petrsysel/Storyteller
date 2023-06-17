@@ -8,7 +8,7 @@ class CommandResolver {
     OnSomeInput(text) {
         let phrases = Utility.SplitCommand(text);
         let keyword = phrases.splice(0, 1)[0];
-        let args = new Arguments(phrases);
+        let args = new RawArguments(phrases);
         let command = this.commandsPackage.GetCommand(keyword);
         command.Execute(args);
     }

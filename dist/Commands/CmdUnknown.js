@@ -1,6 +1,6 @@
 "use strict";
 class CmdUnknown extends Command {
-    Execute(args) {
+    Execution(args) {
         this.Output.Print("Neznámý příkaz");
     }
 }

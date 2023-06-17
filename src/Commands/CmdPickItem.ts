@@ -3,6 +3,10 @@ class CmdPickItem extends Command{
         this.AddKeyword("pick");
         this.AddKeyword("seber");
         this.AddKeyword("vezmi");
+
+        this.AddRequiredArgument(ArgumentType.string, "name", "název", "Název předmětu který chceš vzít", "Musíš zadat název předmětu, který chceš vzít")
+
+        this.AddUnrequiredArgument(ArgumentType.number, "amount", "množství", "Kolik kusů od předmětu chceš vzít", 1)
     }
     Help(){
         return `Přesune předmět z aktuální lokace do inventáře.
@@ -11,14 +15,9 @@ class CmdPickItem extends Command{
         Příklad: pick baterie 5`;
     }
 
-    Execute(args: Arguments){
-        
-        if(!args.IsSpecified(0)){
-            this.Output.Print("Musíš zadat název předmětu");
-            return;
-        }
-        let name = args.GetValue<string>(0, "název");
-        let amount: number = args.GetValue<number>(1, 1);
+    Execution(args: Arguments){
+        let name = args.GetArg('name') as string
+        let amount = args.GetArg('amount') as number
 
         let room = this.World.Player.Room;
 

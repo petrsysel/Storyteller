@@ -6,7 +6,7 @@ class CmdShowInventory extends Command{
     Help(){
         return "Zobrazí předměty v inventáři."
     }
-    Execute(args: Arguments){
+    Execution(args: Arguments){
         let inventory = this.World.Player.Inventory;
         this.Output.Print("Inventář:")
         inventory.GetItems().forEach(item => {
