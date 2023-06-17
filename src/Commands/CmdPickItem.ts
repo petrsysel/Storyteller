@@ -28,5 +28,6 @@ class CmdPickItem extends Command{
         }
         let removed = room.RemoveItem(founded, amount) as Item;
         this.World.Player.PickItem(founded.Copy(removed.GetAmount()));
+        this.Output.Print(`Vzal sis předmět ${name} ${Utility.VerbousAmount(amount)}`)
     }
 }

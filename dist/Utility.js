@@ -23,4 +23,8 @@ class Utility {
         else
             return defalutValue;
     }
+    static VerbousAmount(amount) {
+        let verbous = amount > 1 ? `v množství ${amount}ks` : "";
+        return verbous;
+    }
 }
