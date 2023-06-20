@@ -11,6 +11,7 @@ class Command {
     }
     Execute(rawArgs) {
         try {
+            this.Output.Split(1);
             let args = Arguments.Resolve(rawArgs, this.Arguments);
             this.Execution(args);
         }
@@ -18,7 +19,7 @@ class Command {
             if (e instanceof Error) {
                 let message = e.message;
                 console.log(message);
-                this.Output.Print(`Chyba příkazu: ${message}`);
+                this.Output.Error(`Chyba příkazu: ${message}`);
             }
         }
     }

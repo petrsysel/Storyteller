@@ -1,11 +1,5 @@
 "use strict";
 class CmdHelp extends Command {
-    /**
-     *
-     * @param {World} world
-     * @param {Output} output
-     * @param {CommandsPackage} cmdPackage
-     */
     constructor(world, output, cmdPackage) {
         super(world, output);
         this.CmdPackage = cmdPackage;
@@ -43,7 +37,7 @@ class CmdHelp extends Command {
             default: {
                 let foundCommand = this.CmdPackage.GetCommand(option);
                 if (foundCommand instanceof CmdUnknown)
-                    this.Output.Print(`Nelze vypsat nápovědu pro neexistující příkaz ${option}`);
+                    this.Output.Error(`Nelze vypsat nápovědu pro neexistující příkaz ${option}`);
                 else
                     this.WriteHelpFor(foundCommand);
                 break;
@@ -60,15 +54,14 @@ class CmdHelp extends Command {
     }
     WriteHelpFor(command) {
         let argumentList = command.Arguments.Arguments.map(argument => `&lt${argument.Label}${argument.Required ? "*" : ""}&gt`);
-        this.Output.Print("_____________________________________________");
         this.Output.Print(command.GetName());
-        this.Output.Print("---------------------------------------------");
         this.Output.Print(command.Help());
         this.Output.Print(`Všechny aliasy: ${command.Keywords.join(", ")}`);
         this.Output.Print(`Použití: ${command.GetName()} ${argumentList.join(" ")}`);
+        this.Output.SetIndentation(1);
         command.Arguments.Arguments.forEach(argument => {
             this.Output.Print(`${argument.Label} - ${argument.Description}`);
         });
-        this.Output.Print("_____________________________________________");
+        this.Output.SetIndentation(0);
     }
 }

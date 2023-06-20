@@ -10,14 +10,16 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _CommandsPackage_baseCommand;
+var _CommandsPackage_baseCommand, _CommandsPackage_justEnterCommand;
 class CommandsPackage {
     constructor(world, output) {
         _CommandsPackage_baseCommand.set(this, void 0);
+        _CommandsPackage_justEnterCommand.set(this, void 0);
         this.World = world;
         this.Output = output;
         this.Commands = [];
         __classPrivateFieldSet(this, _CommandsPackage_baseCommand, new CmdUnknown(world, output), "f");
+        __classPrivateFieldSet(this, _CommandsPackage_justEnterCommand, new CmdJustEnter(world, output), "f");
         this.InitCommands();
     }
     InitCommands() {
@@ -27,6 +29,7 @@ class CommandsPackage {
     }
     GetCommand(keyword) {
         let found = null;
+        console.log(keyword);
         this.Commands.forEach(command => {
             if (command.HaveKeyword(keyword)) {
                 found = command;
@@ -34,7 +37,9 @@ class CommandsPackage {
         });
         if (!found)
             found = __classPrivateFieldGet(this, _CommandsPackage_baseCommand, "f");
+        if (keyword == undefined)
+            found = __classPrivateFieldGet(this, _CommandsPackage_justEnterCommand, "f");
         return found;
     }
 }
-_CommandsPackage_baseCommand = new WeakMap();
+_CommandsPackage_baseCommand = new WeakMap(), _CommandsPackage_justEnterCommand = new WeakMap();

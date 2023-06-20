@@ -10,6 +10,7 @@ class Input {
         _Input_instances.add(this);
         this.element = document.getElementById('player-input');
         this.element.addEventListener('keydown', __classPrivateFieldGet(this, _Input_instances, "m", _Input_onPlayerInput).bind(this));
+        this.element.focus();
         this.listeners = [];
         this.inputHistory = [];
         this.positionInHistory = 0;
@@ -18,9 +19,13 @@ class Input {
         this.listeners.push(listener);
     }
     LoadHistory() {
+        this.element.setSelectionRange(5, 5);
         if (this.positionInHistory < 0 || this.positionInHistory >= this.inputHistory.length)
             return;
         this.element.value = this.inputHistory[this.positionInHistory];
+        let that = this.element;
+        setTimeout(function () { that.selectionStart = that.selectionEnd = 10000; }, 0);
+        // this.element.setSelectionRange(5, 5)
     }
 }
 _Input_instances = new WeakSet(), _Input_onPlayerInput = function _Input_onPlayerInput(event) {
@@ -28,7 +33,8 @@ _Input_instances = new WeakSet(), _Input_onPlayerInput = function _Input_onPlaye
         this.listeners.forEach(listener => {
             listener(this.element.value);
         });
-        this.inputHistory.push(this.element.value);
+        if (this.element.value != "")
+            this.inputHistory.push(this.element.value);
         this.positionInHistory = this.inputHistory.length;
         this.element.value = "";
     }

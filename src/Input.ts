@@ -7,6 +7,7 @@ class Input{
     constructor(){
         this.element = document.getElementById('player-input') as HTMLInputElement;
         this.element.addEventListener('keydown', this.#onPlayerInput.bind(this));
+        this.element.focus()
 
         this.listeners = [];
         this.inputHistory = [];
@@ -18,7 +19,7 @@ class Input{
             this.listeners.forEach(listener => {
                 listener(this.element.value);
             })
-            this.inputHistory.push(this.element.value);
+            if(this.element.value != "") this.inputHistory.push(this.element.value);
             this.positionInHistory = this.inputHistory.length;
             this.element.value = "";
         }
@@ -45,7 +46,11 @@ class Input{
     }
 
     LoadHistory(){
+        this.element.setSelectionRange(5, 5)
         if(this.positionInHistory < 0 || this.positionInHistory >= this.inputHistory.length) return;
         this.element.value = this.inputHistory[this.positionInHistory];
+        let that = this.element
+        setTimeout(function(){ that.selectionStart = that.selectionEnd = 10000; }, 0);
+        // this.element.setSelectionRange(5, 5)
     }
 }
